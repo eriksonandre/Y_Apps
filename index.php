@@ -36,7 +36,7 @@
 	<title>Y - Register</title>
 </head>
 <body>
-	<h2>Registrasi</h2>
+	<h2>Register</h2>
 	<form action="index.php" method="POST">
 		<label for="usm">Username:</label>
 		<input type="text" id="usm" name="username" > <br><br>
@@ -47,13 +47,24 @@
 			<input type="radio" id="M" name="gender" value="Male" >
 			<label for="M">Male</label>
 			<input type="radio" id="F" name="gender" value="Female">
-			<label for="F">Female</label> <br><br>	
+			<label for="F">Female</label> <br><br>
 		</fieldset>
+		<br>
 		
-
 
 
 		<input type="submit" value="Register">
 	</form>
+
+	<h2> Sudah punya akun? </h2>
+	<input type="button" name="login" value="Login" onclick="redirectToPage()">
+
+	<!-- JAVASCRIPT untuk tombol login -->
+	<script>
+		function redirectToPage(){
+			window.location.href = 'login.php';
+		}
+	</script>
+
 </body>
 </html>

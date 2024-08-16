@@ -1,5 +1,6 @@
 <?php
 	include("database_connection.php");
+	include("static_session.php");
 
 	if($_SERVER["REQUEST_METHOD"] == "POST"){
 
@@ -19,11 +20,21 @@
 				$row = mysqli_fetch_assoc($result);	
 				
 				if($row['password'] == md5($password)){
-				echo "<script> console.log('Berhasil login');</script>";
-				echo "<script> alert('Berhasil login');</script>";
+					echo "<script> console.log('Berhasil login');</script>";
+					
+					//Simpan data pengguna ke session
+					$_SESSION['username'] = $row['username'];
+					$_SESSION['password'] = $row['password'];
+					$_SESSION['gender'] = $row['gender'];
+					$_SESSION['registered_date'] = $row['registered_date'];
+
+					echo "<script> alert('Berhasil login');</script>";
+
+					header("Location: home.php");
+					exit();
 				}else{
 					echo "<script> console.log('Tidak berhasil login');</script>";
-					echo $row['username'] . " " . $row['password'];
+					//echo $row['username'] . " " . $row['password'];
 					echo "<script> alert('Tidak berhasil login');</script>";
 				}
 			}else{
